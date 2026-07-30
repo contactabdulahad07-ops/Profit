@@ -367,3 +367,48 @@ const music = document.getElementById("birthdayMusic");
 document.addEventListener("click", function () {
     music.play();
 }, { once: true });
+const message = `💌 My Dearest Falak ❤️
+
+Happy Birthday Meri Jaan! 🎂❤️
+
+Aaj ka din meri zindagi ke sabse khoobsurat dinon mein se ek hai, kyun ke aaj tumhara birthday hai.
+
+Tumhari muskurahat meri duniya ki sabse pyari cheez hai.
+
+Main dua karta hoon ke Allah tumhein hamesha khush rakhe. 🤲
+
+Tum meri zindagi ki sabse khoobsurat wajah ho.
+
+Har din tumhare saath aur bhi haseen lagta hai.
+
+Shukriya meri zindagi mein aane ke liye.
+
+Main hamesha tumhari izzat aur care karunga.
+
+I Love You So Much Falak ❤️
+
+Happy Birthday My Love 🎂💕`;
+
+const typing = document.getElementById("typing");
+
+let i = 0;
+
+function typeLetter(){
+
+if(i < message.length){
+
+typing.innerHTML += message.charAt(i);
+
+i++;
+
+setTimeout(typeLetter,40);
+
+}
+
+}
+
+finishBtn.addEventListener("click",function(){
+
+setTimeout(typeLetter,600);
+
+});

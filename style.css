@@ -324,3 +324,31 @@ transform:translateY(0);
 }
 
   }
+.loveLetter{
+
+margin-top:20px;
+max-height:350px;
+overflow-y:auto;
+text-align:left;
+padding:15px;
+border-radius:20px;
+background:rgba(255,255,255,.12);
+
+}
+
+.loveLetter h2{
+
+text-align:center;
+margin-bottom:15px;
+color:#ffd6f5;
+
+}
+
+.loveLetter p{
+
+font-size:17px;
+line-height:1.8;
+margin-bottom:10px;
+color:white;
+
+  }

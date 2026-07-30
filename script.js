@@ -361,3 +361,9 @@ finalScreen.classList.add("active");
 fireworks();
 
 };
+const music = document.getElementById("birthdayMusic");
+
+// Pehli click par music start hoga
+document.addEventListener("click", function () {
+    music.play();
+}, { once: true });

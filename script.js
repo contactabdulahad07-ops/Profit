@@ -149,3 +149,20 @@ gameScreen.classList.remove("active");
 cakeScreen.classList.add("active");
 
 }
+cutCakeBtn.addEventListener("click",()=>{
+
+cake.classList.add("cut");
+
+candles.innerHTML="💨 💨 💨";
+
+cutCakeBtn.innerHTML="🎉 Cake Cut Successfully";
+
+setTimeout(()=>{
+
+alert("🎂 Happy Birthday Falak My Love ❤️");
+
+// Part 6 mein Promise Screen open hogi.
+
+},1000);
+
+});

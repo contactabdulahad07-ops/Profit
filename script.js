@@ -306,3 +306,58 @@ item.remove();
 }
 
   }
+// ================= MUSIC =================
+
+const music=document.getElementById("birthdayMusic");
+
+document.body.addEventListener("click",function(){
+
+music.play();
+
+},{once:true});
+
+// ================= FIREWORKS =================
+
+function fireworks(){
+
+const area=document.getElementById("fireworks");
+
+let emoji=["🎆","✨","🎉","💖","❤️"];
+
+for(let i=0;i<40;i++){
+
+let fire=document.createElement("div");
+
+fire.className="fire";
+
+fire.innerHTML=emoji[Math.floor(Math.random()*emoji.length)];
+
+fire.style.left=Math.random()*100+"vw";
+
+fire.style.top=(60+Math.random()*30)+"vh";
+
+fire.style.animationDuration=(2+Math.random()*2)+"s";
+
+area.appendChild(fire);
+
+setTimeout(()=>{
+
+fire.remove();
+
+},4000);
+
+}
+
+}
+
+// Final Screen
+
+finishBtn.onclick=function(){
+
+loveScreen.classList.remove("active");
+
+finalScreen.classList.add("active");
+
+fireworks();
+
+};

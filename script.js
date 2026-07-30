@@ -74,3 +74,98 @@ gameScreen.classList.add("active");
 startGame();
 
 };
+// ================= HEART GAME =================
+
+let total = 0;
+
+function startGame(){
+
+total = 0;
+
+score.innerHTML = "0 / 10";
+
+gameArea.innerHTML = "";
+
+let interval = setInterval(createHeart,700);
+
+function createHeart(){
+
+const heart = document.createElement("div");
+
+heart.className = "heart";
+
+heart.innerHTML = "❤️";
+
+heart.style.left = Math.random()*250 + "px";
+
+gameArea.appendChild(heart);
+
+// Heart Click
+
+heart.onclick = function(){
+
+total++;
+
+score.innerHTML = total + " / 10";
+
+heart.remove();
+
+if(total >= 10){
+
+clearInterval(interval);
+
+setTimeout(function(){
+
+openCakeScreen();
+
+},500);
+
+}
+
+};
+
+// Remove Heart
+
+setTimeout(function(){
+
+if(heart.parentNode){
+
+heart.remove();
+
+}
+
+},4000);
+
+}
+
+}
+
+// ================= OPEN CAKE SCREEN =================
+
+function openCakeScreen(){
+
+gameScreen.classList.remove("active");
+
+cakeScreen.classList.add("active");
+
+}
+
+// ================= CUT CAKE =================
+
+cutCakeBtn.onclick = function(){
+
+cake.classList.add("cut");
+
+candles.innerHTML = "💨 💨 💨";
+
+cutCakeBtn.innerHTML = "🎉 Cake Cut Successfully";
+
+setTimeout(function(){
+
+cakeScreen.classList.remove("active");
+
+promiseScreen.classList.add("active");
+
+},1500);
+
+};

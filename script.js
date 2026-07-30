@@ -136,3 +136,16 @@ heart.remove();
 }
 
   }
+// ================= CAKE =================
+
+const cakeScreen = document.getElementById("cakeScreen");
+const cutCakeBtn = document.getElementById("cutCakeBtn");
+const cake = document.getElementById("cake");
+const candles = document.getElementById("candles");
+
+function openCakeScreen(){
+
+gameScreen.classList.remove("active");
+cakeScreen.classList.add("active");
+
+}

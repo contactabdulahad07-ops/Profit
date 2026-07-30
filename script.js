@@ -166,3 +166,45 @@ alert("🎂 Happy Birthday Falak My Love ❤️");
 },1000);
 
 });
+// ================= FINAL SCENES =================
+
+const promiseScreen = document.getElementById("promiseScreen");
+const loveScreen = document.getElementById("loveScreen");
+const finalScreen = document.getElementById("finalScreen");
+
+const promiseBtn = document.getElementById("promiseBtn");
+const finishBtn = document.getElementById("finishBtn");
+
+// Cake Complete
+
+cutCakeBtn.addEventListener("click",()=>{
+
+setTimeout(()=>{
+
+cakeScreen.classList.remove("active");
+
+promiseScreen.classList.add("active");
+
+},1000);
+
+});
+
+// Promise
+
+promiseBtn.addEventListener("click",()=>{
+
+promiseScreen.classList.remove("active");
+
+loveScreen.classList.add("active");
+
+});
+
+// Finish
+
+finishBtn.addEventListener("click",()=>{
+
+loveScreen.classList.remove("active");
+
+finalScreen.classList.add("active");
+
+});

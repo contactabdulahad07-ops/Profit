@@ -230,9 +230,7 @@ confetti.remove();
 // ================= PLAY AGAIN =================
 
 window.playAgain=function(){
-
 location.reload();
-
 };
 const knife=document.getElementById("knife");
 };

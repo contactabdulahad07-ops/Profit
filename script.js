@@ -234,3 +234,26 @@ window.playAgain=function(){
 location.reload();
 
 };
+const knife=document.getElementById("knife");
+
+knife.onclick=function(){
+
+knife.classList.add("cutAnimation");
+
+setTimeout(function(){
+
+cake.style.transform="rotate(-3deg) scale(.95)";
+
+candles.innerHTML="💨 💨 💨 💨 💨";
+
+setTimeout(function(){
+
+cakeScreen.classList.remove("active");
+
+promiseScreen.classList.add("active");
+
+},1800);
+
+},1200);
+
+};

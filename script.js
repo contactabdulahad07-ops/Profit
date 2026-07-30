@@ -257,3 +257,52 @@ promiseScreen.classList.add("active");
 },1200);
 
 };
+knife.onclick = function(){
+
+knife.classList.add("cutAnimation");
+
+setTimeout(function(){
+
+cake.classList.add("split");
+
+candles.innerHTML="💨 💨 💨 💨 💨";
+
+celebrate();
+
+setTimeout(function(){
+
+cakeScreen.classList.remove("active");
+
+promiseScreen.classList.add("active");
+
+},2500);
+
+},1200);
+
+};
+
+function celebrate(){
+
+let emojis=["🎉","🎊","🎈","❤️","✨","💖"];
+
+for(let i=0;i<60;i++){
+
+let item=document.createElement("span");
+
+item.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+item.style.left=Math.random()*100+"vw";
+
+item.style.animationDuration=(2+Math.random()*3)+"s";
+
+document.body.appendChild(item);
+
+setTimeout(()=>{
+
+item.remove();
+
+},5000);
+
+}
+
+  }

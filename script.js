@@ -117,7 +117,11 @@ clearInterval(interval);
 
 setTimeout(function(){
 
-alert("🎉 You Win ❤️");
+openCakeScreen();
+
+},500);
+
+  }
 
 // Part 5 mein Cake Screen open hogi.
 

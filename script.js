@@ -235,27 +235,6 @@ location.reload();
 
 };
 const knife=document.getElementById("knife");
-
-knife.onclick=function(){
-
-knife.classList.add("cutAnimation");
-
-setTimeout(function(){
-
-cake.style.transform="rotate(-3deg) scale(.95)";
-
-candles.innerHTML="💨 💨 💨 💨 💨";
-
-setTimeout(function(){
-
-cakeScreen.classList.remove("active");
-
-promiseScreen.classList.add("active");
-
-},1800);
-
-},1200);
-
 };
 knife.onclick = function(){
 
@@ -359,14 +338,7 @@ loveScreen.classList.remove("active");
 finalScreen.classList.add("active");
 
 fireworks();
-
 };
-const music = document.getElementById("birthdayMusic");
-
-// Pehli click par music start hoga
-document.addEventListener("click", function () {
-    music.play();
-}, { once: true });
 const message = `💌 My Dearest Falak ❤️
 
 Happy Birthday Meri Jaan! 🎂❤️

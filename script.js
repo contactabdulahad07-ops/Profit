@@ -169,3 +169,68 @@ promiseScreen.classList.add("active");
 },1500);
 
 };
+// ================= PROMISE =================
+
+promiseBtn.onclick = function(){
+
+promiseScreen.classList.remove("active");
+
+loveScreen.classList.add("active");
+
+};
+
+// ================= FINISH =================
+
+finishBtn.onclick = function(){
+
+loveScreen.classList.remove("active");
+
+finalScreen.classList.add("active");
+
+createConfetti();
+
+};
+
+// ================= CONFETTI =================
+
+function createConfetti(){
+
+for(let i=0;i<80;i++){
+
+let confetti=document.createElement("div");
+
+confetti.innerHTML="🎉";
+
+confetti.style.position="fixed";
+confetti.style.left=Math.random()*100+"vw";
+confetti.style.top="-20px";
+confetti.style.fontSize=(20+Math.random()*20)+"px";
+confetti.style.zIndex="9999";
+confetti.style.transition="4s linear";
+
+document.body.appendChild(confetti);
+
+setTimeout(function(){
+
+confetti.style.top="110vh";
+confetti.style.transform="rotate(720deg)";
+
+},50);
+
+setTimeout(function(){
+
+confetti.remove();
+
+},4500);
+
+}
+
+}
+
+// ================= PLAY AGAIN =================
+
+window.playAgain=function(){
+
+location.reload();
+
+};

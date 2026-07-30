@@ -61,3 +61,78 @@ alert("🎉 Welcome Falak ❤️");
 // Part 4 mein Heart Game open hogi.
 
 });
+// ================= HEART GAME =================
+
+const gameScreen = document.getElementById("gameScreen");
+const gameArea = document.getElementById("gameArea");
+const score = document.getElementById("score");
+
+let total = 0;
+
+// Surprise Button
+
+surpriseBtn.onclick = function(){
+
+welcomeScreen.classList.remove("active");
+
+gameScreen.classList.add("active");
+
+startGame();
+
+};
+
+function startGame(){
+
+total = 0;
+
+score.innerHTML = "0 / 10";
+
+gameArea.innerHTML = "";
+
+let interval = setInterval(createHeart,700);
+
+function createHeart(){
+
+const heart = document.createElement("div");
+
+heart.className = "heart";
+
+heart.innerHTML = "❤️";
+
+heart.style.left = Math.random()*250+"px";
+
+gameArea.appendChild(heart);
+
+heart.onclick = function(){
+
+total++;
+
+score.innerHTML = total+" / 10";
+
+heart.remove();
+
+if(total>=10){
+
+clearInterval(interval);
+
+setTimeout(function(){
+
+alert("🎉 You Win ❤️");
+
+// Part 5 mein Cake Screen open hogi.
+
+},500);
+
+}
+
+};
+
+setTimeout(()=>{
+
+heart.remove();
+
+},4000);
+
+}
+
+  }

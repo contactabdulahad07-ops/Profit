@@ -19,366 +19,323 @@ const score = document.getElementById("score");
 const cutCakeBtn = document.getElementById("cutCakeBtn");
 const cake = document.getElementById("cake");
 const candles = document.getElementById("candles");
+const knife = document.getElementById("knife");
 
 const promiseBtn = document.getElementById("promiseBtn");
 const finishBtn = document.getElementById("finishBtn");
+
+const typing = document.getElementById("typing");
+const music = document.getElementById("birthdayMusic");
 
 // ================= PASSWORD =================
 
 const correctPassword = "Falak123";
 
-unlockBtn.onclick = function(){
+unlockBtn.onclick = function () {
 
-if(password.value === correctPassword){
+    if (password.value === correctPassword) {
 
-passwordScreen.classList.remove("active");
-welcomeScreen.classList.add("active");
-error.innerHTML="";
+        passwordScreen.classList.remove("active");
+        welcomeScreen.classList.add("active");
+        error.innerHTML = "";
 
-}else{
+    } else {
 
-error.innerHTML="❌ Wrong Password";
+        error.innerHTML = "❌ Wrong Password";
 
-password.classList.add("shake");
+        password.classList.add("shake");
 
-setTimeout(function(){
-
-password.classList.remove("shake");
-
-},500);
-
-}
+        setTimeout(function () {
+            password.classList.remove("shake");
+        }, 500);
+    }
 
 };
 
-// Enter Key
+password.addEventListener("keypress", function (e) {
 
-password.addEventListener("keypress",function(e){
-
-if(e.key==="Enter"){
-
-unlockBtn.click();
-
-}
+    if (e.key === "Enter") {
+        unlockBtn.click();
+    }
 
 });
 
+// ================= MUSIC =================
+
+document.body.addEventListener("click", function () {
+
+    music.play();
+
+}, { once: true });
 // ================= SURPRISE =================
 
-surpriseBtn.onclick=function(){
+surpriseBtn.onclick = function () {
 
-welcomeScreen.classList.remove("active");
+    welcomeScreen.classList.remove("active");
+    gameScreen.classList.add("active");
 
-gameScreen.classList.add("active");
-
-startGame();
+    startGame();
 
 };
+
 // ================= HEART GAME =================
 
 let total = 0;
 
-function startGame(){
+function startGame() {
 
-total = 0;
+    total = 0;
+    score.innerHTML = "0 / 10";
+    gameArea.innerHTML = "";
 
-score.innerHTML = "0 / 10";
+    let interval = setInterval(createHeart, 700);
 
-gameArea.innerHTML = "";
+    function createHeart() {
 
-let interval = setInterval(createHeart,700);
+        const heart = document.createElement("div");
 
-function createHeart(){
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 250 + "px";
 
-const heart = document.createElement("div");
+        gameArea.appendChild(heart);
 
-heart.className = "heart";
+        heart.onclick = function () {
 
-heart.innerHTML = "❤️";
+            total++;
 
-heart.style.left = Math.random()*250 + "px";
+            score.innerHTML = total + " / 10";
 
-gameArea.appendChild(heart);
+            heart.remove();
 
-// Heart Click
+            if (total >= 10) {
 
-heart.onclick = function(){
+                clearInterval(interval);
 
-total++;
+                setTimeout(function () {
 
-score.innerHTML = total + " / 10";
+                    openCakeScreen();
 
-heart.remove();
+                }, 500);
 
-if(total >= 10){
+            }
 
-clearInterval(interval);
+        };
 
-setTimeout(function(){
+        setTimeout(function () {
 
-openCakeScreen();
+            if (heart.parentNode) {
 
-},500);
+                heart.remove();
+
+            }
+
+        }, 4000);
+
+    }
 
 }
+
+function openCakeScreen() {
+
+    gameScreen.classList.remove("active");
+    cakeScreen.classList.add("active");
+
+                   }
+// ================= CAKE SCREEN =================
+
+cutCakeBtn.onclick = function () {
+
+    cake.classList.add("split");
+
+    candles.innerHTML = "💨 💨 💨 💨 💨";
+
+    knife.classList.add("cutAnimation");
+
+    celebrate();
+
+    setTimeout(function () {
+
+        cakeScreen.classList.remove("active");
+        promiseScreen.classList.add("active");
+
+    }, 2200);
 
 };
 
-// Remove Heart
+// Knife Click
 
-setTimeout(function(){
+knife.onclick = function () {
 
-if(heart.parentNode){
-
-heart.remove();
-
-}
-
-},4000);
-
-}
-
-}
-
-// ================= OPEN CAKE SCREEN =================
-
-function openCakeScreen(){
-
-gameScreen.classList.remove("active");
-
-cakeScreen.classList.add("active");
-
-}
-
-// ================= CUT CAKE =================
-
-cutCakeBtn.onclick = function(){
-
-cake.classList.add("cut");
-
-candles.innerHTML = "💨 💨 💨";
-
-cutCakeBtn.innerHTML = "🎉 Cake Cut Successfully";
-
-setTimeout(function(){
-
-cakeScreen.classList.remove("active");
-
-promiseScreen.classList.add("active");
-
-},1500);
-
-};
-// ================= PROMISE =================
-
-promiseBtn.onclick = function(){
-
-promiseScreen.classList.remove("active");
-
-loveScreen.classList.add("active");
+    cutCakeBtn.click();
 
 };
 
-// ================= FINISH =================
+// ================= CELEBRATION =================
 
-finishBtn.onclick = function(){
+function celebrate() {
 
-loveScreen.classList.remove("active");
+    let emojis = ["🎉", "🎊", "🎈", "✨", "❤️", "💖"];
 
-finalScreen.classList.add("active");
+    for (let i = 0; i < 60; i++) {
 
-createConfetti();
+        let item = document.createElement("span");
 
-};
+        item.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
 
-// ================= CONFETTI =================
+        item.style.position = "fixed";
+        item.style.left = Math.random() * 100 + "vw";
+        item.style.top = "-30px";
+        item.style.fontSize = (20 + Math.random() * 20) + "px";
+        item.style.transition = "4s linear";
+        item.style.zIndex = "9999";
 
-function createConfetti(){
+        document.body.appendChild(item);
 
-for(let i=0;i<80;i++){
+        setTimeout(function () {
 
-let confetti=document.createElement("div");
+            item.style.top = "110vh";
+            item.style.transform = "rotate(720deg)";
 
-confetti.innerHTML="🎉";
+        }, 50);
 
-confetti.style.position="fixed";
-confetti.style.left=Math.random()*100+"vw";
-confetti.style.top="-20px";
-confetti.style.fontSize=(20+Math.random()*20)+"px";
-confetti.style.zIndex="9999";
-confetti.style.transition="4s linear";
+        setTimeout
+      // ================= PROMISE =================
 
-document.body.appendChild(confetti);
+promiseBtn.onclick = function () {
 
-setTimeout(function(){
-
-confetti.style.top="110vh";
-confetti.style.transform="rotate(720deg)";
-
-},50);
-
-setTimeout(function(){
-
-confetti.remove();
-
-},4500);
-
-}
-
-}
-
-// ================= PLAY AGAIN =================
-
-window.playAgain=function(){
-location.reload();
-};
-const knife=document.getElementById("knife");
-};
-knife.onclick = function(){
-
-knife.classList.add("cutAnimation");
-
-setTimeout(function(){
-
-cake.classList.add("split");
-
-candles.innerHTML="💨 💨 💨 💨 💨";
-
-celebrate();
-
-setTimeout(function(){
-
-cakeScreen.classList.remove("active");
-
-promiseScreen.classList.add("active");
-
-},2500);
-
-},1200);
+    promiseScreen.classList.remove("active");
+    loveScreen.classList.add("active");
 
 };
 
-function celebrate(){
+// ================= FINAL SCREEN =================
 
-let emojis=["🎉","🎊","🎈","❤️","✨","💖"];
-
-for(let i=0;i<60;i++){
-
-let item=document.createElement("span");
-
-item.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-
-item.style.left=Math.random()*100+"vw";
-
-item.style.animationDuration=(2+Math.random()*3)+"s";
-
-document.body.appendChild(item);
-
-setTimeout(()=>{
-
-item.remove();
-
-},5000);
-
-}
-
-  }
-// ================= MUSIC =================
-
-const music=document.getElementById("birthdayMusic");
-
-document.body.addEventListener("click",function(){
-
-music.play();
-
-},{once:true});
-
-// ================= FIREWORKS =================
-
-function fireworks(){
-
-const area=document.getElementById("fireworks");
-
-let emoji=["🎆","✨","🎉","💖","❤️"];
-
-for(let i=0;i<40;i++){
-
-let fire=document.createElement("div");
-
-fire.className="fire";
-
-fire.innerHTML=emoji[Math.floor(Math.random()*emoji.length)];
-
-fire.style.left=Math.random()*100+"vw";
-
-fire.style.top=(60+Math.random()*30)+"vh";
-
-fire.style.animationDuration=(2+Math.random()*2)+"s";
-
-area.appendChild(fire);
-
-setTimeout(()=>{
-
-fire.remove();
-
-},4000);
-
-}
-
-}
-
-// Final Screen
-
-finishBtn.onclick=function(){
-
-loveScreen.classList.remove("active");
-
-finalScreen.classList.add("active");
-
-fireworks();
-};
 const message = `💌 My Dearest Falak ❤️
 
 Happy Birthday Meri Jaan! 🎂❤️
 
-Aaj ka din meri zindagi ke sabse khoobsurat dinon mein se ek hai, kyun ke aaj tumhara birthday hai.
-
-Tumhari muskurahat meri duniya ki sabse pyari cheez hai.
-
-Main dua karta hoon ke Allah tumhein hamesha khush rakhe. 🤲
+Aaj ka din sirf tumhara nahi, meri khushiyon ka bhi din hai.
 
 Tum meri zindagi ki sabse khoobsurat wajah ho.
 
-Har din tumhare saath aur bhi haseen lagta hai.
+Tumhari muskurahat meri har dua ka hissa hai.
 
-Shukriya meri zindagi mein aane ke liye.
+Main dua karta hoon ke Allah tumhein hamesha khush rakhe. 🤲
 
-Main hamesha tumhari izzat aur care karunga.
+Main hamesha tumhari respect, care aur support karunga.
+
+Chahe jo bhi waqt aaye, main tumhara saath kabhi nahi chhorunga.
+
+Tum meri life ki sabse pyari blessing ho.
 
 I Love You So Much Falak ❤️
 
 Happy Birthday My Love 🎂💕`;
 
-const typing = document.getElementById("typing");
-
 let i = 0;
 
-function typeLetter(){
+function typeLetter() {
 
-if(i < message.length){
+    if (i < message.length) {
 
-typing.innerHTML += message.charAt(i);
+        typing.innerHTML += message.charAt(i);
 
-i++;
+        i++;
 
-setTimeout(typeLetter,40);
+        setTimeout(typeLetter, 40);
+
+    }
 
 }
 
+finishBtn.onclick = function () {
+
+    loveScreen.classList.remove("active");
+    finalScreen.classList.add("active");
+
+    fireworks();
+
+    setTimeout(function () {
+
+        typeLetter();
+
+    }, 500);
+
+};
+
+// ================= FIREWORKS =================
+
+function fireworks() {
+
+    const area = document.getElementById("fireworks");
+
+    let emojis = ["🎆", "✨", "🎉", "❤️", "💖"];
+
+    for (let i = 0; i < 50; i++) {
+
+        let fire = document.createElement("div");
+
+        fire.className = "fire";
+        fire.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+
+        fire.style.left = Math.random() * 100 + "vw";
+        fire.style.top = (60 + Math.random() * 30) + "vh";
+
+        area.appendChild(fire);
+
+        setTimeout(() => {
+
+            fire.remove();
+
+        }, 4000);
+
+    }
+
 }
 
-finishBtn.addEventListener("click",function(){
+// ================= PLAY AGAIN =================
 
-setTimeout(typeLetter,600);
+window.playAgain = function () {
 
-});
+    location.reload();
+
+};// ================= EXTRA EFFECTS =================
+
+// Auto Focus Password
+window.onload = function () {
+
+    if (password) {
+        password.focus();
+    }
+
+};
+
+// Play Again Button
+const playAgainBtn = document.querySelector("button[onclick]");
+
+if (playAgainBtn) {
+
+    playAgainBtn.onclick = function () {
+
+        location.reload();
+
+    };
+
+}
+
+// Prevent Music Error
+if (music) {
+
+    document.addEventListener("click", function () {
+
+        music.play().catch(() => {});
+
+    }, { once: true });
+
+}
+
+// Console Message ❤️
+console.log("❤️ Happy Birthday Falak ❤️");
+
+// ================= END =================
